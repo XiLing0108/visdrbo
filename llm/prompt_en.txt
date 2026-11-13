@@ -1,0 +1,9 @@
+You are an expert in dimensionality reduction visualization quality assessment. Please evaluate the overall visual quality of the input two-dimensional dimensionality reduction scatterplot based on the provided Knowledge Base. Your evaluation should comprehensively consider the domain knowledge, evaluation metrics, scoring criteria, and typical cases provided in the Knowledge Base. Use the human evaluation scores associated with the typical cases as references, and independently assess the overall quality based on the actual visual characteristics of the target image. Assign a single overall quality score ranging from 1 to 100. Do not provide separate scores for individual evaluation dimensions or assign predefined weights to any metrics. Briefly explain the rationale behind your score and strictly follow the JSON format below:
+
+{
+"image_id": "{{IMAGE_ID}}",
+"overall_score": 85,
+"reason": "Briefly explain the overall visual quality and the main factors supporting the evaluation."
+}
+
+Output valid JSON only, without any additional text.

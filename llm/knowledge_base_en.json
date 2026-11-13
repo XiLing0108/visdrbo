@@ -1,0 +1,222 @@
+{
+  "knowledge_base": {
+    "name": "DR Expert Knowledge Base",
+    "dr_visualization_knowledge": {
+      "what_is_dr_scatterplot": {
+        "description": "A dimensionality reduction (DR) scatter plot visualizes high-dimensional data after mapping it into two dimensions. Each point represents a data sample, and its position indicates the sample's coordinates in the two-dimensional embedding. Different colors are commonly used to represent different data classes.",
+        "purpose": [
+          "Show the overall distribution of high-dimensional data intuitively.",
+          "Reveal how data samples cluster and separate from one another.",
+          "Help users discover potential structures and patterns in the data."
+        ]
+      },
+      "characteristics_of_good_scatterplots": {
+        "description": "A high-quality DR scatter plot should clearly show the spatial distribution and structural relationships in the data, making them easy to understand and explore.",
+        "characteristics": [
+          "A reasonable overall spatial distribution without pronounced imbalance.",
+          "Clear local structures and recognizable visual focal points.",
+          "Data points that remain distinguishable, without severe visual occlusion.",
+          "Good differentiation between classes, with class structures that are easy to recognize."
+        ]
+      }
+    },
+    "metric_knowledge": [
+      {
+        "id": "uniformity",
+        "metric": "Uniformity",
+        "definition": "Assesses whether the overall spatial distribution of points across the two-dimensional canvas is balanced, and whether there is pronounced local crowding, spatial imbalance, or extensive empty space.",
+        "positive_features": [
+          "Points are distributed relatively evenly across the canvas.",
+          "The overall layout is coherent and uses the canvas space reasonably.",
+          "There is no pronounced spatial imbalance between regions.",
+          "There are no large empty regions that undermine the overall layout."
+        ],
+        "negative_features": [
+          "Many points are concentrated in a small part of the canvas.",
+          "Some regions contain extensive empty space.",
+          "The overall distribution is noticeably biased toward one side of the canvas.",
+          "Local regions are excessively crowded, making the overall layout incoherent."
+        ],
+        "evaluation_notes": [
+          "Spatial balance does not require every region to contain the same number of points.",
+          "Do not judge the overall distribution solely from the positions of cluster centers.",
+          "Consider the spread of the main data mass, local density, and overall use of canvas space together."
+        ]
+      },
+      {
+        "id": "interest",
+        "metric": "Interest",
+        "definition": "Assesses whether a scatter plot has visual focal points that attract attention and whether it highlights recognizable local data structures.",
+        "positive_features": [
+          "The scatter plot contains clear regions of visual attention.",
+          "Important local regions are visually salient.",
+          "The data distribution reveals recognizable local structures.",
+          "The overall layout guides attention toward different regions of the data."
+        ],
+        "negative_features": [
+          "The overall visual distribution lacks clear focal regions.",
+          "Different regions show little visual distinction.",
+          "Recognizable local structures are insufficiently prominent.",
+          "The overall layout lacks features that guide visual exploration."
+        ],
+        "evaluation_notes": [
+          "Visual interest concerns focal points and salient regions.",
+          "A more concentrated focal point is not necessarily better.",
+          "Do not assume that a region is more interesting simply because it contains more points.",
+          "Judge the visual appeal of local structures in the context of the overall layout."
+        ]
+      },
+      {
+        "id": "non_overlap",
+        "metric": "Non-overlap",
+        "definition": "Assesses the degree to which points visually occlude one another and whether individual points and local distributions can be clearly distinguished.",
+        "positive_features": [
+          "Most points can be distinguished individually.",
+          "Points show little visual occlusion.",
+          "Details of local point distributions remain clear.",
+          "Points retain some visual distinguishability even in dense regions."
+        ],
+        "negative_features": [
+          "Many points occlude one another.",
+          "Local regions contain severe point overlap.",
+          "Individual points are difficult to distinguish in dense regions.",
+          "Point occlusion interferes with observation of the overall distribution."
+        ],
+        "evaluation_notes": [
+          "Focus on visual occlusion between points, rather than separation between classes.",
+          "A large number of points does not necessarily imply severe overlap.",
+          "Consider both point density and actual occlusion.",
+          "Distinguish point-level visual occlusion from class-level spatial mixing."
+        ]
+      },
+      {
+        "id": "clarity",
+        "metric": "Clarity",
+        "definition": "Assesses how well the regions occupied by different classes are spatially separated and how easily class boundaries and structures can be recognized.",
+        "positive_features": [
+          "Different classes are clearly separated in space.",
+          "There is little overlap between classes.",
+          "Cluster boundaries are clear and class structures are easy to recognize.",
+          "Different classes are visually distinguishable."
+        ],
+        "negative_features": [
+          "Points from different classes are heavily mixed.",
+          "Regions occupied by multiple classes overlap substantially.",
+          "Class boundaries are blurred.",
+          "Spatial relationships between classes are difficult to recognize."
+        ],
+        "evaluation_notes": [
+          "Focus on spatial relationships between classes.",
+          "Do not judge class clarity solely from compactness within clusters.",
+          "A small amount of overlap between classes does not necessarily make the overall structure unclear.",
+          "Distinguish class mixing from visual occlusion between individual points."
+        ]
+      }
+    ],
+    "scoring_rules": {
+      "score_type": "overall_quality_score",
+      "score_range": {
+        "minimum": 1,
+        "maximum": 100,
+        "data_type": "number"
+      },
+      "scoring_criteria": {
+        "1-20": {
+          "level": "Very poor",
+          "description": "Overall visual quality is very poor. Severe problems with spatial distribution, point overlap, or class mixing make the main data structures difficult to recognize."
+        },
+        "21-40": {
+          "level": "Poor",
+          "description": "Overall visual quality is poor. Clear problems in multiple visual aspects hinder understanding of the data distribution and class structures."
+        },
+        "41-60": {
+          "level": "Fair",
+          "description": "Overall visual quality is fair. The main data structures are visible, but some spatial imbalance, visual occlusion, or difficulty distinguishing classes remains."
+        },
+        "61-80": {
+          "level": "Good",
+          "description": "Overall visual quality is good. The spatial layout is reasonably organized and the main data structures are clear, with only minor local visual problems."
+        },
+        "81-100": {
+          "level": "Excellent",
+          "description": "Overall visual quality is excellent. The layout is coherent, points are distinguishable, class structures are clear, and the plot communicates visually well."
+        }
+      },
+      "assessment_principles": [
+        "Produce only one overall quality score.",
+        "Consider Uniformity, Interest, Non-overlap, and Clarity together when assigning the overall score.",
+        "All four aspects contribute to the overall judgment; do not output separate scores for them.",
+        "Do not assign weights to the four evaluation aspects in advance.",
+        "Do not determine the overall quality from any single aspect alone.",
+        "When aspects involve trade-offs, judge them in the context of the overall visual result.",
+        "The score should reflect the visual quality actually shown in the image."
+      ]
+    },
+    "typical_cases": [
+      {
+        "case_id": "case_01",
+        "image": "cases/case_01.png",
+        "description": "Several clusters are distributed across different parts of the two-dimensional canvas. The data occupy a reasonable overall area, with some spatial separation between clusters. Points are not noticeably concentrated in one small region, and different parts of the canvas are used reasonably well. The relatively coherent layout allows users to see the clusters' positions and spatial relationships intuitively.",
+        "human_evaluation": {
+          "overall_score": 85
+        }
+      },
+      {
+        "case_id": "case_02",
+        "image": "cases/case_02.png",
+        "description": "The scatter plot shows clear local groupings. Points concentrate in one or more regions, creating prominent visual focal points. Local density varies among clusters: some regions are relatively dense while others are sparser. This layout can highlight local structure and draw attention, although excessive concentration may cause some point overlap and reduce distinguishability.",
+        "human_evaluation": {
+          "overall_score": 76
+        }
+      },
+      {
+        "case_id": "case_03",
+        "image": "cases/case_03.png",
+        "description": "The scatter plot contains clearly dense local regions. Many points are packed into a small area, causing substantial visual occlusion between neighboring points. Some points cover others, making individual positions and changes in local density difficult to discern. Although the main groupings remain visible, excessive point overlap reduces the distinguishability of the overall distribution.",
+        "human_evaluation": {
+          "overall_score": 35
+        }
+      },
+      {
+        "case_id": "case_04",
+        "image": "cases/case_04.png",
+        "description": "Different classes form relatively distinct cluster regions with clear spatial gaps, making class boundaries easy to recognize. Points from each class are mostly located within their respective regions, without extensive interleaving or mixing across classes. The resulting class separation makes it relatively easy to identify each class's position and structural relationships.",
+        "human_evaluation": {
+          "overall_score": 92
+        }
+      },
+      {
+        "case_id": "case_05",
+        "image": "cases/case_05.png",
+        "description": "Points from different classes are interleaved in two-dimensional space, and several class regions overlap substantially. Points of different colors intermingle, preventing clear, distinct class regions from forming; some class boundaries are blurred. Although individual points remain visible, relationships between classes are unclear, making the class structure harder to understand.",
+        "human_evaluation": {
+          "overall_score": 42
+        }
+      },
+      {
+        "case_id": "case_06",
+        "image": "cases/case_06.png",
+        "description": "The overall point distribution is noticeably displaced: the main clusters occupy one side of the canvas, while a large region on the other side is sparse or empty. Although local clusters may have clear internal structures, the use of canvas space is uneven. This concentrates the visual center of gravity and reduces the scatter plot's spatial coherence.",
+        "human_evaluation": {
+          "overall_score": 58
+        }
+      },
+      {
+        "case_id": "case_07",
+        "image": "cases/case_07.png",
+        "description": "Most points lie in several cluster regions, while a few isolated points are far from the main distribution. These outliers are spatially separated from the main clusters, producing a layout with both concentrated groups and isolated points. The outliers increase the distribution's spatial extent but may also shift its visual center of gravity. Overall visual quality should therefore be judged with regard to both the main cluster layout and the outlier distribution.",
+        "human_evaluation": {
+          "overall_score": 70
+        }
+      },
+      {
+        "case_id": "case_08",
+        "image": "cases/case_08.png",
+        "description": "The scatter plot shows varied cluster geometries. Different clusters may have different shapes and spatial distributions, such as circular, elliptical, elongated, curved, or ring-shaped structures. Their internal point distributions and boundaries vary, giving the plot rich local structure. Evaluation should consider whether these geometries are clearly recognizable and whether the clusters have reasonable spatial relationships, rather than judging visual quality solely by the regularity of their shapes.",
+        "human_evaluation": {
+          "overall_score": 83
+        }
+      }
+    ]
+  }
+}
